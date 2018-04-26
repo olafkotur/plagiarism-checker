@@ -2,11 +2,12 @@ import java.io.*;
 import java.util.*;
 
 public class Frequency {
-	
-	public void frequencyCheck() throws Exception {
-		Load L = new Load();
-		L.loadFile();
-		System.out.println(L.getFile(1));
+
+	Load load = new Load();
+
+	public void frequencyCheck() throws IOException {
+		load.readCharacter();
+
 	}
 
 	// public int getFrequency() {
