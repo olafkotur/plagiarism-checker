@@ -35,10 +35,13 @@ public class Load {
 		}
 	}
 
-	// Retrieve entire file in a string
+	// Retrieve specified file in String format
 	public String getParagraph(int index) {
 		return fileList.get(index).toString();
 	}
 
-	// Retrieve the	
+	// Retrieve an ArrayList of characters
+	public String getCharacter(int index) {
+		return characterList;
+	}
 }
