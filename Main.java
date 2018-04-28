@@ -2,8 +2,10 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 
-		Frequency F = new Frequency();
-		F.frequencyCheck();
+		Load load = new Load();
+		Frequency frequency = new Frequency();
+
+		frequency.frequencyCheck();
 
 	}
 }
