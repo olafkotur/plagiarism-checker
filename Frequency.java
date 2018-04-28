@@ -9,15 +9,16 @@ public class Frequency {
 
 	public void frequencyCheck() throws IOException {
 		load.readParagraph();
-		load.toWords(0);
-		int count = 0;
-		for (int j = 0; j < load.getWords().size(); j++) {
-			count = Collections.frequency(load.getWords(), load.getSingleWord(j));
-			frequencyList.add(count);
+		for (int i = 0; i < 5; i++) {
+			int count = 0;
+			load.toWords(i);
+			for (int j = 0; j < load.getWords().size(); j++) {
+				count = Collections.frequency(load.getWords(), load.getSingleWord(j));
+				frequencyList.add(count);
+			}
+			System.out.println(frequencyList + "\n\n");
+			frequencyList.clear();
+			load.clearWordList();
 		}
-		System.out.println(frequencyList);
-
-
 	}
-
 }

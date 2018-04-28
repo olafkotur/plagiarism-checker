@@ -28,7 +28,7 @@ public class Load {
 		for (int i = 0; i < words.length; i++) {
 			words[i] = words[i].replaceAll("\\W", "").toLowerCase();
 			wordList.add(words[i]);
-			System.out.println(wordList.get(i));
+			// System.out.println(wordList.get(i));
 		}
 	}
 
@@ -45,6 +45,11 @@ public class Load {
 	// Retrieve a specified word by the index from the Word List
 	public String getSingleWord(int index) {
 		return wordList.get(index);
+	}
+
+	// Clears the current Word List
+	public void clearWordList() {
+		wordList.clear();
 	}
 
 

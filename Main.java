@@ -7,5 +7,8 @@ public class Main {
 
 		frequency.frequencyCheck();
 
+		Display display = new Display();
+		display.generateHTML();
+
 	}
 }
