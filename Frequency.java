@@ -6,12 +6,9 @@ public class Frequency {
 	Load load = new Load();
 
 	public void frequencyCheck() throws IOException {
-		load.readCharacter();
+		load.readParagraph();
+		load.toWords(4);
 
 	}
-
-	// public int getFrequency() {
-
-	// }
 
 }
