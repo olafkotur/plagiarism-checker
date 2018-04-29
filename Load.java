@@ -28,8 +28,15 @@ public class Load {
 		for (int i = 0; i < words.length; i++) {
 			words[i] = words[i].replaceAll("\\W", "").toLowerCase();
 			wordList.add(words[i]);
-			// System.out.println(wordList.get(i));
+			wordList.remove("");
 		}
+	}
+
+	public void combinedWords(int indexOne, int indexTwo) {
+		words = null; 
+		wordList.clear();
+		toWords(indexOne);
+		toWords(indexTwo);
 	}
 
 	// Retrieve specified file in String format
