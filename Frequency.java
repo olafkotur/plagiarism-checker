@@ -32,6 +32,35 @@ public class Frequency {
 		}
 	}
 
+	public void rankWords(ArrayList wordList) {
+		for (int i = 1; i < frequencyOneList.size(); i++) {
+			int x = frequencyOneList.get(i);
+			for (int j = i - 1; j >= 0 && frequencyOneList.get(j) > x; j--) {
+				Collections.swap(frequencyOneList, j + 1, j);
+				Collections.swap(frequencyTwoList, j + 1, j);
+				Collections.swap(wordList, j + 1, j);
+			}
+		}
+		Collections.reverse(frequencyOneList);
+		Collections.reverse(frequencyTwoList);
+		Collections.reverse(wordList);
+	}
+
+	public void removeDuplicates(ArrayList list) {
+		int listSize = list.size();
+		for (int i = 0; i < listSize - 1; i++) {
+			for (int j = i + 1; j < listSize; j++) {
+				if (list.get(j).equals(list.get(i))) {
+					list.remove(list.get(i).toString());
+					frequencyOneList.remove(frequencyOneList.get(i));
+					frequencyTwoList.remove(frequencyTwoList.get(i));
+					listSize--;
+					j--;
+				}
+			}
+		}
+	}
+
 	// Ask user which two files they would like to compare in the frequency check
 	public void getUserRequest() {
 		Scanner scanner = new Scanner(System.in);
@@ -41,6 +70,10 @@ public class Frequency {
 		System.out.println("Please enter index number of the comparison file (1 - 5): ");
 		compareIndex = scanner.nextInt() - 1;
 		scanner.close();
+
+		// foobar - shortcut, testing only
+		// originalIndex = 0;
+		// compareIndex = 4;
 	}
 
 	// Retrieve the occurences of each word in the original file

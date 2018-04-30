@@ -7,6 +7,7 @@ public class Display {
 	Frequency frequency = new Frequency();
 
 	private ArrayList <String> tempList = new ArrayList <String>();
+	private ArrayList <String> wordList = new ArrayList <String>();
 	private String tableCells;
 		
 	// Generate a template HTML whilst calling populateTable method to find correct values
@@ -19,7 +20,7 @@ public class Display {
 		populateTable();
 
 		String tableHeader = "<tr><th>Word</th><th>Original</th><th>Comparison</th>" + tableCells + "</tr>";
-		String tableMain = "<div><h2>Word Frequency</h2><table style=\"width: 50%; text-align: left;\">" + tableHeader + "</table></div>";
+		String tableMain = "<div><h2>Word Frequency Analysis</h2><table style=\"width: 50%; text-align: left;\">" + tableHeader + "</table></div>";
 		String title = "<div style=\"text-align: center; margin-top: 50px\"><h1>Plagiarism Checker Results</h1></div>";
 
 		String html = title + tableMain;
@@ -34,12 +35,21 @@ public class Display {
 		String resultsOriginal;
 		String resultsCompare;
 		load.toWords(frequency.getOriginalIndex());
-		for (int i = 0; i < load.getWords().size(); i++) {
-			resultsName = "<tr><td>" + load.getSingleWord(i) + "</td>";
+		copyList();
+		frequency.removeDuplicates(wordList);
+		frequency.rankWords(wordList);
+		for (int i = 0; i < wordList.size(); i++) {
+			resultsName = "<tr><td>" + wordList.get(i) + "</td>";
 			resultsOriginal = "<td>" + frequency.getFrequencyOne(i) + "</td>"; 
 			resultsCompare = "<td>" + frequency.getFrequencyTwo(i) + "</td></tr>"; 
 			tempList.add(resultsName + resultsOriginal + resultsCompare);
 		}
 		tableCells = tempList.toString().replaceAll("[ |,|\\[|\\]]", "");
+	}
+
+	public void copyList() {
+		for (int i = 0; i < load.getWords().size(); i++) {
+			wordList.add(load.getSingleWord(i));
+		}
 	}
 }
