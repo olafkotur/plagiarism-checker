@@ -14,14 +14,18 @@ public class Display {
 	public void generateHTML() throws IOException {
 		File file = new File("results.html");
 		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+
 		frequency.getUserRequest();
-		frequency.frequencyCheck(frequency.getOriginalIndex(), frequency.getCompareIndex());
+		int original = frequency.getOriginalIndex();
+		int compare = frequency.getCompareIndex();
+
+		frequency.frequencyCheck(original, compare);
 		load.readParagraph();
 		populateTable();
 
-		String tableHeader = "<tr><th>Word</th><th>Original</th><th>Comparison</th>" + tableCells + "</tr>";
-		String tableMain = "<div><h2>Word Frequency Analysis</h2><table style=\"width: 50%; text-align: left;\">" + tableHeader + "</table></div>";
 		String title = "<div style=\"text-align: center; margin-top: 50px\"><h1>Plagiarism Checker Results</h1></div>";
+		String tableHeader = "<tr><th>Word</th><th>File - " + (original+1) + "</th><th>File - " + (compare+1) + "</th>" + tableCells + "</tr>";
+		String tableMain = "<div><h2>Word Frequency Analysis</h2><table style=\"width: 50%; text-align: left;\">" + tableHeader + "</table></div>";
 
 		String html = title + tableMain;
 
@@ -36,8 +40,8 @@ public class Display {
 		String resultsCompare;
 		load.toWords(frequency.getOriginalIndex());
 		copyList();
-		frequency.removeDuplicates(wordList);
 		frequency.rankWords(wordList);
+		frequency.removeDuplicates(wordList);
 		for (int i = 0; i < wordList.size(); i++) {
 			resultsName = "<tr><td>" + wordList.get(i) + "</td>";
 			resultsOriginal = "<td>" + frequency.getFrequencyOne(i) + "</td>"; 
