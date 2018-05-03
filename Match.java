@@ -9,27 +9,25 @@ public class Match {
 
 	Frequency frequency = new Frequency();
 	Load load = new Load();
-
+	
 	public void splitToPhrase() throws IOException {
 		load.readParagraph();
+		int counter = 0;
 		int fileOne = frequency.getOriginalIndex();
 		String original = load.getParagraph(fileOne);
-		char scanner;
-		for (int i = 0; i < original.length(); i++) {
-			scanner = original.charAt(i);
-			if (Character.toString(scanner) != "\\W") {
-				tempList.add(Character.toString(scanner));
-			}
-			else {
-				System.out.println("hello");
+		load.toWords(fileOne);
+		System.out.println(fileOne);
+
+		for (int i = 0; i < load.getWords().size(); i++) {
+			counter++;
+			tempList.add(load.getSingleWord(i));
+			if (counter == 5) {
+				counter = 0;
 				phraseOneList.add(tempList.toString());
 				tempList.clear();
 			}
-			// System.out.println(phraseOneList);
 		}
-
-
-
+		System.out.println(phraseOneList.get(1));
 	}	
 }
 

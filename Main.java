@@ -6,9 +6,18 @@ public class Main {
 
 		Load load = new Load();
 		Frequency frequency = new Frequency();
-
+		Match match = new Match();
 		Display display = new Display();
-		display.generateHTML();
+
+		// Calculating word frequency
+		load.readParagraph();
+		
+		frequency.getUserRequest();
+		int original = frequency.getOriginalIndex();
+		int compare = frequency.getCompareIndex();
+		
+		frequency.frequencyCheck(original, compare);
+		display.generateHTML(original, compare);
 
 	}
 }

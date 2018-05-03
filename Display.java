@@ -12,20 +12,15 @@ public class Display {
 	private String tableCells;
 		
 	// Generate a template HTML whilst calling populateTable method to find correct values
-	public void generateHTML() throws IOException {
+	public void generateHTML(int original, int compare) throws IOException {
 		File frequencyFile = new File("frequency.html");
 		BufferedWriter writerOne = new BufferedWriter(new FileWriter(frequencyFile));
 
 		File phraseFile = new File("phrase.html");
 		BufferedWriter writerTwo = new BufferedWriter(new FileWriter(phraseFile));
 
-		frequency.getUserRequest();
-		int original = frequency.getOriginalIndex();
-		int compare = frequency.getCompareIndex();
-
-		frequency.frequencyCheck(original, compare);
 		load.readParagraph();
-		populateTable();
+		populateFrequencyTable(original);
 
 		String title = "<div style=\"text-align: center; margin-top: 50px\"><h1>Plagiarism Checker Results</h1></div>";
 		String tableHeader = "<tr><th>Word</th><th>File - " + (original+1) + "</th><th>File - " + (compare+1) + "</th>" + tableCells + "</tr>";
@@ -43,15 +38,14 @@ public class Display {
 	}
 
 	// Find frequency values for each word mentioned in the files
-	public void populateTable() throws IOException {
+	public void populateFrequencyTable(int original) throws IOException {
 		String resultsName;
 		String resultsOriginal;
 		String resultsCompare;
-		load.toWords(frequency.getOriginalIndex());
+		load.toWords(original);
 		copyList();
 		frequency.rankWords(wordList);
 		frequency.removeDuplicates(wordList);
-		match.splitToPhrase();
 		for (int i = 0; i < wordList.size(); i++) {
 			resultsName = "<tr><td>" + wordList.get(i) + "</td>";
 			resultsOriginal = "<td>" + frequency.getFrequencyOne(i) + "</td>"; 
@@ -67,3 +61,10 @@ public class Display {
 		}
 	}
 }
+
+
+
+
+
+
+
