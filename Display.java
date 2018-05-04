@@ -5,40 +5,50 @@ public class Display {
 
 	Load load = new Load();
 	Frequency frequency = new Frequency();
+	Match match = new Match();
 
 	private ArrayList <String> tempList = new ArrayList <String>();
 	private ArrayList <String> wordList = new ArrayList <String>();
-	private String tableCells;
+	private String frequencyTableCells;
 		
 	// Generate a template HTML whilst calling populateTable method to find correct values
 	public void generateHTML() throws IOException {
-		File file = new File("results.html");
-		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+		File frequencyFile = new File("frequency.html");
+		BufferedWriter writerOne = new BufferedWriter(new FileWriter(frequencyFile));
+
+		File phraseFile = new File("phrase.html");
+		BufferedWriter writerTwo = new BufferedWriter(new FileWriter(phraseFile));
 
 		frequency.getUserRequest();
 		int original = frequency.getOriginalIndex();
 		int compare = frequency.getCompareIndex();
 
-		frequency.frequencyCheck(original, compare);
 		load.readParagraph();
-		populateTable();
+		frequency.frequencyCheck(original, compare);
+		populateFrequencyTable(original);
+		populateMatchTable();
 
 		String title = "<div style=\"text-align: center; margin-top: 50px\"><h1>Plagiarism Checker Results</h1></div>";
-		String tableHeader = "<tr><th>Word</th><th>File - " + (original+1) + "</th><th>File - " + (compare+1) + "</th>" + tableCells + "</tr>";
-		String tableMain = "<div><h2>Word Frequency Analysis</h2><table style=\"width: 50%; text-align: left;\">" + tableHeader + "</table></div>";
+		String tableHeader = "<tr><th>Word</th><th>File - " + (original+1) + "</th><th>File - " + (compare+1) + "</th>" + frequencyTableCells + "</tr>";
+		String links = "<div style=\"text-align: center;\"><h2><a href=\"frequency.html\" style=\"display: inline; margin: 20px;\">Word Frequency</a><a href=\"phrase.html\" style=\"display: inline; margin: 20px;\">Phrase Matching</a></h2></div>";
+		String tableMain = "<div style=\"margin: auto; width:50%;\">" + links + "<table border=\"1\"style=\"width: 100%; text-align: left;\">" + tableHeader + "</table></div>";
 
-		String html = title + tableMain;
+		String frequencyHTML = title + tableMain;
+		String phraseHTML = title + links;
 
-		writer.write(html);
-		writer.close();
+		writerOne.write(frequencyHTML);
+		writerOne.close();
+
+		writerTwo.write(phraseHTML);
+		writerTwo.close();
 	}
 
 	// Find frequency values for each word mentioned in the files
-	public void populateTable() throws IOException {
+	public void populateFrequencyTable(int original) {
 		String resultsName;
 		String resultsOriginal;
 		String resultsCompare;
-		load.toWords(frequency.getOriginalIndex());
+		load.toWords(original);
 		copyList();
 		frequency.rankWords(wordList);
 		frequency.removeDuplicates(wordList);
@@ -48,7 +58,11 @@ public class Display {
 			resultsCompare = "<td>" + frequency.getFrequencyTwo(i) + "</td></tr>"; 
 			tempList.add(resultsName + resultsOriginal + resultsCompare);
 		}
-		tableCells = tempList.toString().replaceAll("[ |,|\\[|\\]]", "");
+		frequencyTableCells = tempList.toString().replaceAll("[ |,|\\[|\\]]", "");
+	}
+
+	public void populateMatchTable() throws IOException {
+		match.comparePhrases();
 	}
 
 	public void copyList() {
@@ -57,3 +71,10 @@ public class Display {
 		}
 	}
 }
+
+
+
+
+
+
+

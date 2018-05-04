@@ -72,7 +72,7 @@ public class Frequency {
 		// scanner.close();
 
 		// foobar - shortcut, testing only
-		originalIndex = 0;
+		originalIndex = 3;
 		compareIndex = 4;
 	}
 

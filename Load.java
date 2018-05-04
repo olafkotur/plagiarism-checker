@@ -6,6 +6,7 @@ public class Load {
 	private ArrayList <String> tempList = new ArrayList <String>();
 	private ArrayList <String> fileList = new ArrayList <String>();
 	private ArrayList <String> wordList = new ArrayList <String>();
+	private ArrayList<String> phraseList = new ArrayList <String>();
 	private String[] words = null;
 
 	// Read each file and store into an ArrayList
@@ -24,6 +25,7 @@ public class Load {
 
 	// Converts the String ArrayList into a String Array of cleaned words
 	public void toWords(int index) {
+		wordList.clear();
 		words = getParagraph(index).split("[- ]");
 		for (int i = 0; i < words.length; i++) {
 			words[i] = words[i].replaceAll("\\W", "").toLowerCase();
@@ -38,6 +40,31 @@ public class Load {
 		toWords(indexOne);
 		toWords(indexTwo);
 	}
+
+	// Splits the file into a list of phrases of the length 5
+	public void toPhrase(int index) throws IOException {
+		int counter = 0;
+		int phraseLength = 3;
+		phraseList.clear();
+		readParagraph();
+		toWords(index);
+
+		for (int i = 0; i < getWords().size(); i++) {
+			counter++;
+			tempList.add(getSingleWord(i));
+			if (counter >= phraseLength) {
+				phraseList.add(tempList.toString());
+				tempList.clear();
+				counter = 0;
+			}
+		}
+	}
+
+
+	public ArrayList getPhrase() {
+		return phraseList;
+	}
+
 
 	// Retrieve specified file in String format
 	public String getParagraph(int index) {

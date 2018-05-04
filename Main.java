@@ -6,8 +6,10 @@ public class Main {
 
 		Load load = new Load();
 		Frequency frequency = new Frequency();
-
+		Match match = new Match();
 		Display display = new Display();
+
+		// Calculating word frequency	
 		display.generateHTML();
 
 	}
