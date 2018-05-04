@@ -78,6 +78,13 @@ public class Frequency {
 		System.out.println("\nComparison File (1 - 5): ");
 		compareIndex = scanner.nextInt() - 1;
 		scanner.close();
+
+		if (originalIndex > 4 || compareIndex > 4 || originalIndex < 0 || compareIndex < 0) {
+			System.out.println("\n--------- CHOSEN FILE DOES NOT EXIST ---------");
+			System.out.println("\n--------- PLEASE CHOOSE A DIFFERENT FILE ---------");
+			System.out.println("\n--------- Halting\n");
+			System.exit(0);
+		}
 	}
 
 	// Retrieve the occurences of each word in the original file
