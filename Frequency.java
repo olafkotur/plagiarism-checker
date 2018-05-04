@@ -3,9 +3,11 @@ import java.util.*;
 
 public class Frequency {
 
+	// New instances of classes used
 	Load load = new Load();
 	Load reload = new Load();
 
+	// Initialising Arraylists
 	private ArrayList <Integer> frequencyOneList = new ArrayList <Integer>();
 	private ArrayList <Integer> frequencyTwoList = new ArrayList <Integer>();
 	private int originalIndex = 0;
@@ -32,6 +34,8 @@ public class Frequency {
 		}
 	}
 
+	// Orders the words and their corresponding frequencies by using an insertion sort
+	// algortithm where @param list is the list of words from another class.
 	public void rankWords(ArrayList list) {
 		for (int i = 1; i < frequencyOneList.size(); i++) {
 			int x = frequencyOneList.get(i);
@@ -46,6 +50,9 @@ public class Frequency {
 		Collections.reverse(list);
 	}
 
+	// Removes the duplicates in the wordList, searches for multiple cases of the same 
+	// word, also removes the corresponding frequency values to maintain data positions 
+	// in the table. 
 	public void removeDuplicates(ArrayList list) {
 		int listSize = list.size();
 		for (int i = 0; i < listSize - 1; i++) {
@@ -63,17 +70,14 @@ public class Frequency {
 
 	// Ask user which two files they would like to compare in the frequency check
 	public void getUserRequest() {
-		// Scanner scanner = new Scanner(System.in);
-		// System.out.println("Please enter index number of the original file (1 - 5): ");
-		// originalIndex = scanner.nextInt() - 1;
+		System.out.println("\n--------- PLEASE CHOOSE WHICH FILES TO COMPARE ---------");
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("\nOriginal File (1 - 5): ");
+		originalIndex = scanner.nextInt() - 1;
 		
-		// System.out.println("Please enter index number of the comparison file (1 - 5): ");
-		// compareIndex = scanner.nextInt() - 1;
-		// scanner.close();
-
-		// foobar - shortcut, testing only
-		originalIndex = 3;
-		compareIndex = 4;
+		System.out.println("\nComparison File (1 - 5): ");
+		compareIndex = scanner.nextInt() - 1;
+		scanner.close();
 	}
 
 	// Retrieve the occurences of each word in the original file

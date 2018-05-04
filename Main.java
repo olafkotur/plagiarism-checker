@@ -4,13 +4,15 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 
-		Load load = new Load();
-		Frequency frequency = new Frequency();
-		Match match = new Match();
-		Display display = new Display();
+		// Starts the system timer
+		long start = System.currentTimeMillis();
 
-		// Calculating word frequency	
+		Display display = new Display();
 		display.generateHTML();
+
+		// End the system timer and prints out how long the program took
+		long end = System.currentTimeMillis();
+		System.out.println("\n--------- DONE in " + (end - start) + " milliseconds");
 
 	}
 }

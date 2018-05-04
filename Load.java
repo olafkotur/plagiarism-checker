@@ -3,13 +3,14 @@ import java.util.*;
 
 public class Load {
 
+	// Initialising Arraylists
 	private ArrayList <String> tempList = new ArrayList <String>();
 	private ArrayList <String> fileList = new ArrayList <String>();
 	private ArrayList <String> wordList = new ArrayList <String>();
 	private ArrayList<String> phraseList = new ArrayList <String>();
 	private String[] words = null;
 
-	// Read each file and store into an ArrayList
+	// Read each of the provided files and store them in an ArrayList
 	public void readParagraph() throws IOException {
 		BufferedReader input[] = new BufferedReader[5];
 		String lineOfText = null;
@@ -23,7 +24,9 @@ public class Load {
 		}
 	}
 
-	// Converts the String ArrayList into a String Array of cleaned words
+	// Scans through all words in the ArrayList where @param index is the desired file.
+	// Splits the string around where words end, also removes any non-alphabet characters
+	// leaving only cleaned words in an ArrayList.
 	public void toWords(int index) {
 		wordList.clear();
 		words = getParagraph(index).split("[- ]");
@@ -34,14 +37,9 @@ public class Load {
 		}
 	}
 
-	public void combinedWords(int indexOne, int indexTwo) {
-		words = null; 
-		wordList.clear();
-		toWords(indexOne);
-		toWords(indexTwo);
-	}
 
-	// Splits the file into a list of phrases of the length 5
+	// Splits the words from a given file into a list of phrases of length 'phraseLength'
+	// stores each phrase in an ArrayList of phrases which are used for comparsion. 
 	public void toPhrase(int index) throws IOException {
 		int counter = 0;
 		int phraseLength = 3;
@@ -60,11 +58,10 @@ public class Load {
 		}
 	}
 
-
+	// Accessor method for the phraseList ArrayList
 	public ArrayList getPhrase() {
 		return phraseList;
 	}
-
 
 	// Retrieve specified file in String format
 	public String getParagraph(int index) {
@@ -85,6 +82,4 @@ public class Load {
 	public void clearWordList() {
 		wordList.clear();
 	}
-
-
 }
