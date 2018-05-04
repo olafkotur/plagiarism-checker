@@ -63,17 +63,17 @@ public class Frequency {
 
 	// Ask user which two files they would like to compare in the frequency check
 	public void getUserRequest() {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Please enter index number of the original file (1 - 5): ");
-		originalIndex = scanner.nextInt() - 1;
+		// Scanner scanner = new Scanner(System.in);
+		// System.out.println("Please enter index number of the original file (1 - 5): ");
+		// originalIndex = scanner.nextInt() - 1;
 		
-		System.out.println("Please enter index number of the comparison file (1 - 5): ");
-		compareIndex = scanner.nextInt() - 1;
-		scanner.close();
+		// System.out.println("Please enter index number of the comparison file (1 - 5): ");
+		// compareIndex = scanner.nextInt() - 1;
+		// scanner.close();
 
 		// foobar - shortcut, testing only
-		// originalIndex = 3;
-		// compareIndex = 4;
+		originalIndex = 3;
+		compareIndex = 4;
 	}
 
 	// Retrieve the occurences of each word in the original file

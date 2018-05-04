@@ -9,15 +9,8 @@ public class Main {
 		Match match = new Match();
 		Display display = new Display();
 
-		// Calculating word frequency
-		load.readParagraph();
-		
-		frequency.getUserRequest();
-		int original = frequency.getOriginalIndex();
-		int compare = frequency.getCompareIndex();
-		
-		frequency.frequencyCheck(original, compare);
-		display.generateHTML(original, compare);
+		// Calculating word frequency	
+		display.generateHTML();
 
 	}
 }
