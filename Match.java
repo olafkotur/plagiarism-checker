@@ -7,7 +7,7 @@ public class Match {
 	Load load = new Load();
 	Load reload = new Load();
 
-	ArrayList<Float> matchList = new ArrayList<>();
+	ArrayList<Integer> matchList = new ArrayList<>();
 
 	public void comparePhrases() throws IOException {
 		int filesOne[] = {0, 0, 0, 0, 1, 1, 1, 2, 2, 3};
@@ -27,7 +27,7 @@ public class Match {
 					}
 				}
 			}
-			matchList.add((counter * 100.0f) / load.getPhrase().size());
+			matchList.add(Math.round((counter * 100.0f) / load.getPhrase().size()));
 			System.out.println(matchList.get(i));
 		}
 	}
@@ -41,6 +41,10 @@ public class Match {
 			loop = first;
 		}
 		return loop;
+	}
+
+	public int getMatchList() {
+		return matchList;
 	}
 }
 
