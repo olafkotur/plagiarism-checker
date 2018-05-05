@@ -31,7 +31,7 @@ public class Display {
 		frequency.getUserRequest();
 		int original = frequency.getOriginalIndex();
 		int compare = frequency.getCompareIndex();
-		System.out.println("\n--------- Reading file " + original + " and file " + compare);
+		System.out.println("\n--------- Reading file " + (original + 1) + " and file " + (compare + 1));
 
 		// Populate frequency and phrase tables
 		load.readParagraph();
