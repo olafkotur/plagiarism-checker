@@ -100,7 +100,9 @@ public class Display {
 
 		// Produces two table for all files
 		for (int i = 0; i < 10; i++) {
-			String stepTwo = "<tr><td>File " + filesOne.get(i) + " - File " + filesTwo.get(i) + "</td><td>" + match.getMatchList().get(i) + "</td></tr>";
+			int indexOne = Integer.parseInt(filesOne.get(i).toString()) + 1;
+			int indexTwo = Integer.parseInt(filesTwo.get(i).toString()) + 1;
+			String stepTwo = "<tr><td>File " + indexOne + " - File " + indexTwo + "</td><td>" + match.getMatchList().get(i) + "</td></tr>";
 			if (i < 5) {
 				tableOne.add(stepTwo);
 			}
@@ -113,7 +115,9 @@ public class Display {
 
 		// Produces a table for the highest ranking files in the sequence.
 		for (int i = 0; i < 5; i++) {
-			String stepTwo = "<tr><td>File " + filesOne.get(i) + " - File " + filesTwo.get(i) + "</td><td>" + match.getMatchList().get(i) + "</td></tr>";
+			int indexOne = Integer.parseInt(filesOne.get(i).toString()) + 1;
+			int indexTwo = Integer.parseInt(filesTwo.get(i).toString()) + 1;
+			String stepTwo = "<tr><td>File " + indexOne + " - File " + indexTwo + "</td><td>" + match.getMatchList().get(i) + "</td></tr>";
 			tableThree.add(stepTwo);
 		}
 		tempList.add(stepOne + tableOne + stepThree + stepOne + tableTwo + stepThree + stepOne + tableThree + stepThree);

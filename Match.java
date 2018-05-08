@@ -31,14 +31,20 @@ public class Match {
 			// If phrase x of file on is repeated in file y then add to the counter
 			for (int j = 0; j < loop; j++) {
 				for (int k = 0; k < loop; k++) {
-					if (load.getPhrase().get(k).toString().equals(reload.getPhrase().get(j).toString())) {
+					String original = load.getPhrase().get(j).toString();
+					String compare = reload.getPhrase().get(k).toString();
+					if (compare.equals(original)) {
+						System.out.println("Original: " + original);
+						System.out.println("Compare: " + compare);
 						counter++;
 					}
 				}
 			}
 			// (Counter / total words) * 100.
-			matchList.add(Math.round((counter * 100.0f) / load.getPhrase().size()));
+			matchList.add(Math.round((counter * 100.0f) / loop));
 			System.out.println("\n-- Match found: " + matchList.get(i) + "%");
+			System.out.println(counter);
+			System.out.println(loop);
 		}
 	}
 
