@@ -13,6 +13,5 @@ public class Main {
 		// End the system timer and prints out how long the program took
 		long end = System.currentTimeMillis();
 		System.out.println("\n--------- DONE in " + (end - start) + " milliseconds");
-
 	}
 }
