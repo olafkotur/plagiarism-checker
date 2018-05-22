@@ -92,7 +92,7 @@ public class Display {
 	public void populateMatchTable() throws IOException {
 		ArrayList filesOne = match.getFileList(1);
 		ArrayList filesTwo = match.getFileList(2);
-		System.out.println("\n--------- Comparing phrases from all available files");
+		System.out.println("\n--------- Comparing phrases from all available files\n");
 		match.comparePhrases();
 		tempList.clear();
 		String stepOne = "</br><table border=\"1\" style=\"width: 20%; margin: auto; width:20%\"><tr style=\"text-align: left\"><th>Pair</th><th>Phrase Match</th></tr>";
@@ -131,10 +131,3 @@ public class Display {
 		}
 	}
 }
-
-
-
-
-
-
-

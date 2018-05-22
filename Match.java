@@ -42,9 +42,7 @@ public class Match {
 			}
 			// (Counter / total words) * 100.
 			matchList.add(Math.round((counter * 100.0f) / loop));
-			System.out.println("\n-- Match found: " + matchList.get(i) + "%");
-			System.out.println(counter);
-			System.out.println(loop);
+			System.out.println("\n-- Match found: " + matchList.get(i) + "%\n\n");
 		}
 	}
 
